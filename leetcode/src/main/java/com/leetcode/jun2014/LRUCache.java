@@ -103,15 +103,20 @@ public class LRUCache {
     }
     
     private void deleteNodeFromList(Node n) {
-        if (listSize == 1) {
-            listHead = null;
-            listTail = null;
-        } else {
-            n.prev.next = n.next;
-            n.next.prev = n.prev;
-            n.prev = null;
-            n.next = null;
+        if (listSize == 0) return;
+        if (n == listHead) {
+            removeNodeFromFront();
+            return;
+        } else if (n == listTail) {
+            removeNodeFromBack();
+            return;
         }
+        
+        n.prev.next = n.next;
+        n.next.prev = n.prev;
+        n.prev = null;
+        n.next = null;
+        
         listSize--;
     }
     
