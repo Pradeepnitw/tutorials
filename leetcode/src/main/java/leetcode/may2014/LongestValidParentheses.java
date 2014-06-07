@@ -1,4 +1,4 @@
-package com.leetcode.may2014;
+package leetcode.may2014;
 
 public class LongestValidParentheses {
     public int longestValidParentheses(String s) {

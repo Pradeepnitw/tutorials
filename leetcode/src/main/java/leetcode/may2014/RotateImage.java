@@ -1,4 +1,4 @@
-package com.leetcode.may2014;
+package leetcode.may2014;
 
 public class RotateImage {
     public void rotate(int[][] matrix) {
