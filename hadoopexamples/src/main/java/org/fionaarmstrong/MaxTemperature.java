@@ -8,6 +8,13 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class MaxTemperature {
+	
+	
+	/*
+	 * Usage:
+	 * export HADOOP_CLASSPATH=name_of_this.jar
+	 * hadoop MaxTemperature input/ncdc/sample.txt output
+	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 2) {
 			System.err.println("Usage: MaxTemperature <input path> <output path>");
