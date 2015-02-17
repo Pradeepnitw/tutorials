@@ -27,5 +27,4 @@ extends Mapper<LongWritable, Text, Text, IntWritable> {
 		}
 	}
 	
-	
 }
