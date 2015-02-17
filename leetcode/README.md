@@ -1,48 +1,59 @@
+:red_circle: - Hard Difficulty
+:large_blue_circle: - Medium Difficulty
+:white_circle: - Easy Difficulty
+
+:memo: - Read, but didn’t code it
+
 May.2014
 
-[Longest Valid Parentheses](src/main/java/leetcode/may2014/LongestValidParentheses.java) [view problem](http://oj.leetcode.com/problems/longest-valid-parentheses/)
+[Longest Valid Parentheses](src/main/java/leetcode/may2014/LongestValidParentheses.java) [:red_circle:](http://oj.leetcode.com/problems/longest-valid-parentheses/)
 
-[Longest Substring Without Repeating Characters](src/main/java/leetcode/may2014/LongestSubstringWithoutRepeatingCharacters.java) [view problem](http://oj.leetcode.com/problems/longest-substring-without-repeating-characters/)
+[Longest Substring Without Repeating Characters](src/main/java/leetcode/may2014/LongestSubstringWithoutRepeatingCharacters.java) [:large_blue_circle:](http://oj.leetcode.com/problems/longest-substring-without-repeating-characters/)
 
-[Word Break II]() [view problem](http://oj.leetcode.com/problems/word-break-ii/)
+[Word Break II](src/main/java/leetcode/may2014/WordBreakII.java) [:red_circle:](http://oj.leetcode.com/problems/word-break-ii/)
 
-[Pascal's Triangle II]() [view problem](http://oj.leetcode.com/problems/pascals-triangle-ii/)
+[Pascal's Triangle II](src/main/java/leetcode/may2014/PascalsTriangleII.java) [:white_circle:](http://oj.leetcode.com/problems/pascals-triangle-ii/)
 
-[Copy List with Random Pointer]() [view problem](http://oj.leetcode.com/problems/copy-list-with-random-pointer/)
+[Copy List with Random Pointer](src/main/java/leetcode/may2014/CopyListwithRandomPointer.java) [:red_circle:](http://oj.leetcode.com/problems/copy-list-with-random-pointer/)
 
-[Binary Tree Maximum Path Sum]() [view problem](http://oj.leetcode.com/problems/binary-tree-maximum-path-sum/)
+[Binary Tree Maximum Path Sum](src/main/java/leetcode/may2014/BinaryTreeMaximumPathSum.java) [:red_circle:](http://oj.leetcode.com/problems/binary-tree-maximum-path-sum/)
 
-[Word Break]() [view problem](http://oj.leetcode.com/problems/word-break/)
+[Word Break](src/main/java/leetcode/may2014/WordBreak.java) [:large_blue_circle:](http://oj.leetcode.com/problems/word-break/)
 
-[Rotate Image]() [view problem](http://oj.leetcode.com/problems/rotate-image/)
+[Rotate Image](src/main/java/leetcode/may2014/RotateImage.java) [:large_blue_circle:](http://oj.leetcode.com/problems/rotate-image/)
 
-[Roman to Integer]() [view problem](http://oj.leetcode.com/problems/roman-to-integer/)
+[Roman to Integer](src/main/java/leetcode/may2014/RomantoInteger.java) [:white_circle:](http://oj.leetcode.com/problems/roman-to-integer/)
 
-[Maximum Subarray]() [view problem](http://oj.leetcode.com/problems/maximum-subarray/)
+[Maximum Subarray](src/main/java/leetcode/may2014/MaximumSubarray.java) [:large_blue_circle:](http://oj.leetcode.com/problems/maximum-subarray/)
 
-[Merge k Sorted Lists]() [view problem](http://oj.leetcode.com/problems/merge-k-sorted-lists/)
+[Merge k Sorted Lists](src/main/java/leetcode/may2014/MergekSortedLists.java) [:red_circle:](http://oj.leetcode.com/problems/merge-k-sorted-lists/)
 
-[Populating Next Right Pointers in Each Node II]() [view problem](http://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
+[Populating Next Right Pointers in Each Node II](src/main/java/leetcode/may2014/PopulatingNextRightPointersinEachNodeII.java) [:red_circle:](http://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
-[Combination Sum]() [view problem](https://oj.leetcode.com/problems/combination-sum/)
+[Combination Sum](src/main/java/leetcode/may2014/CombinationSum.java) [:large_blue_circle:](https://oj.leetcode.com/problems/combination-sum/)
 
-[Max Points on a Line]() [view problem](http://oj.leetcode.com/problems/max-points-on-a-line/)  Just read, didn't code
+:memo: Max Points on a Line [:red_circle:](http://oj.leetcode.com/problems/max-points-on-a-line/)
 
-[Maximal Rectangle]() [view problem](https://oj.leetcode.com/problems/maximal-rectangle/) 
-(Recursive)
-(Linear)
+Maximal Rectangle [:red_circle:](https://oj.leetcode.com/problems/maximal-rectangle/) 
+[Recursive](src/main/java/leetcode/may2014/MaximalRectangleRecursive.java) 
+[Greedy](src/main/java/leetcode/may2014/MaximalRectangleGreedy.java)
 
-[Largest Rectangle in Histogram]() [view problem](https://oj.leetcode.com/problems/largest-rectangle-in-histogram/)
+[Largest Rectangle in Histogram](src/main/java/leetcode/may2014/LargestRectangleInHistogram.java) [:red_circle:](https://oj.leetcode.com/problems/largest-rectangle-in-histogram/)
 
-[Divide Two Integers]() [view problem](https://oj.leetcode.com/problems/divide-two-integers/) 
+:memo: Divide Two Integers [:large_blue_circle:](https://oj.leetcode.com/problems/divide-two-integers/)
 
 
 Jun.2014
 
-[LRU Cache](src/main/java/leetcode/jun2014/LRUCache.java) [view problem](https://oj.leetcode.com/problems/lru-cache/) - Hard
+[LRU Cache](src/main/java/leetcode/jun2014/LRUCache.java) [:red_circle:](https://oj.leetcode.com/problems/lru-cache/)
+
 
 Feb.2015
 
-[Dungeon Game](src/main/java/leetcode/feb2015/DungeonGame.java) [view problem](https://oj.leetcode.com/problems/dungeon-game/) - Hard
+[Dungeon Game](src/main/java/leetcode/feb2015/DungeonGame.java) [:red_circle:](https://oj.leetcode.com/problems/dungeon-game/)
 
-[Unique Path](src/main/java/leetcode/feb2015/UniquePath.java) [view problem](https://oj.leetcode.com/problems/unique-paths/)
+[Unique Path](src/main/java/leetcode/feb2015/UniquePath.java) [:large_blue_circle:](https://oj.leetcode.com/problems/unique-paths/)
+
+[Symmetric Tree](src/main/java/leetcode/feb2015/SymmetricTree.java) [:white_circle:](https://oj.leetcode.com/problems/symmetric-tree/)
+
+[Reverse Integer](src/main/java/leetcode/feb2015/ReverseInteger.java) [:white_circle:](https://oj.leetcode.com/problems/reverse-integer/)
