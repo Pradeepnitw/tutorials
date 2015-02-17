@@ -4,7 +4,7 @@
 
 :memo: - Read, but didn’t code it
 
-May.2014
+###May.2014
 
 [Longest Valid Parentheses](src/main/java/leetcode/may2014/LongestValidParentheses.java) [:red_circle:](http://oj.leetcode.com/problems/longest-valid-parentheses/)
 
@@ -43,12 +43,12 @@ Maximal Rectangle [:red_circle:](https://oj.leetcode.com/problems/maximal-rectan
 :memo: Divide Two Integers [:large_blue_circle:](https://oj.leetcode.com/problems/divide-two-integers/)
 
 
-Jun.2014
+###Jun.2014
 
 [LRU Cache](src/main/java/leetcode/jun2014/LRUCache.java) [:red_circle:](https://oj.leetcode.com/problems/lru-cache/)
 
 
-Feb.2015
+###Feb.2015
 
 [Dungeon Game](src/main/java/leetcode/feb2015/DungeonGame.java) [:red_circle:](https://oj.leetcode.com/problems/dungeon-game/)
 
