@@ -1,0 +1,16 @@
+
+a,e,tg
+234, abc
+red, 3
+redtulip, 5
+tulip_red, 2
+red_Tulip, 7
+apple, 3
+red_apple, 5
+application, 8
+ab, 2
+adglksdf, 235
+lkjdfn, 13
+ljsdf, 2
+sdfsd, 2
+asadsfs, 6

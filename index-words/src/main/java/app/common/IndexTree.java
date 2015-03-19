@@ -1,38 +1,26 @@
 package app.common;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
-public class IndexTree {
-	public class WordTuple {
-		private String name;
-		private int score;
-		
-		public WordTuple(String name, int score) {
-			this.name = name;
-			this.score = score;
-		}
-		
-		protected String getName() {
-			return name;
-		}
-		protected void setName(String name) {
-			this.name = name;
-		}
-		protected int getScore() {
-			return score;
-		}
-		protected void setScore(int score) {
-			this.score = score;
-		}
-		public String toString() {
-			return "[" + name + "-" + score + "]";
-		}
-	}
+public class IndexTree implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	
-	public class TreeNode<E> {
+	public class TreeNode<E> implements Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private char key;
 		private ArrayList<E> wordList;
 		private Hashtable<Character, TreeNode<E>> children;
@@ -48,12 +36,6 @@ public class IndexTree {
 			
 			wordList = new ArrayList<E>();
 			children = new Hashtable<Character, TreeNode<E>>();
-		}
-		
-		protected TreeNode<E> getChild(char key) {
-			if (children.containsKey(key))
-				return children.get(key);
-			else return null;
 		}
 		
 		protected void addChild(TreeNode<E> child) throws NullPointerException, IllegalArgumentException {
@@ -72,18 +54,6 @@ public class IndexTree {
 			wordList.add(e);
 		}
 		
-		protected ArrayList<E> getWordList() {
-			return wordList;
-		}
-		
-		protected char getKey() {
-			return this.key;
-		}
-		
-		protected Hashtable<Character, TreeNode<E>> getChildrenList() {
-			return children;
-		}
-		
 		public String toString() {
 			// Test purpose
 			StringBuilder sb = new StringBuilder();
@@ -94,18 +64,38 @@ public class IndexTree {
 			sb.append("}");
 			return sb.toString();
 		}
+		
+		// Setters and Getters beyond this point
+		protected char getKey() {
+			return this.key;
+		}
+		
+		protected Hashtable<Character, TreeNode<E>> getChildrenList() {
+			return children;
+		}
+		
+		protected ArrayList<E> getWordList() {
+			return wordList;
+		}		
+		
+		protected TreeNode<E> getChild(char key) {
+			if (children.containsKey(key))
+				return children.get(key);
+			else return null;
+		}
 	}
 	
 	// The children of root
 	private Hashtable<Character, TreeNode<WordTuple>> children;
+	private int size = 0;
 	
 	public IndexTree() {
 		children = new Hashtable<Character, TreeNode<WordTuple>>();
 	}
 	
-	public void insertWord(String word, int score) throws NullPointerException {
+	public void insertWord(String word, int score) {
 		if (word == null || word.length() == 0) {
-			throw new java.lang.NullPointerException("Inserting empty word into IndexTree");
+			return;
 		}
 		
 		String trimmedWord = word.trim();
@@ -117,6 +107,7 @@ public class IndexTree {
 		
 		for (String s : keywords) {
 			if (s.length() == 0) continue;
+			s = s.trim();
 			
 			// Get the first character of this keyword
 			// e.g: 'r' in "red"
@@ -145,8 +136,69 @@ public class IndexTree {
 			// Notice that all the keyword's last node will contain the same WordTuple in memory
 			node.addWord(currentWord);
 		}
+		size++;
 	}
-
+	
+	public WordTuple[] queryByComparator(String queryString, int num, Comparator<WordTuple> comparator) {
+		if (num <= 0)
+			return null;
+		WordTuple[] words = new WordTuple[num];
+		
+		PriorityQueue<WordTuple> heap = new PriorityQueue<WordTuple>(num, comparator);
+		
+		LinkedList<TreeNode<WordTuple>> queue = new LinkedList<TreeNode<WordTuple>>();
+		
+		//bfs
+		if (queryString == null || queryString == "") {
+			// Count all the words in this tree and return the top [num] of them
+			for (TreeNode<WordTuple> n : children.values()) {
+				queue.add(n);
+				for (WordTuple w : n.wordList) {
+					if (!heap.contains(w))
+						heap.add(w);
+				}
+			}
+		} else {
+			TreeNode<WordTuple> lastNode = getNodeByCharacterArray(queryString.toCharArray());
+			queue.add(lastNode);
+			for (WordTuple w : lastNode.wordList) {
+				if (!heap.contains(w))
+					heap.add(w);
+			}
+		}
+		
+		while (!queue.isEmpty()) {
+			queue.addAll(queue.peek().children.values());
+			for (WordTuple w : queue.peek().wordList) {
+				if (!heap.contains(w))
+					heap.add(w);
+			}
+			queue.pop();
+		}
+		
+		System.out.println("Heap Size:" + heap.size());
+		
+		for (int i = 0; i < num; i++) {
+			words[i] = heap.poll();
+		}
+		
+		return words;
+	}
+	
+	/*
+	 * Return the node that matches the keys[] from root down.
+	 */
+	public TreeNode<WordTuple> getNodeByCharacterArray(char[] keys) {
+		if (keys == null || keys.length == 0)
+			return null;
+		int i = 0;
+		TreeNode<WordTuple> node = children.get(keys[i++]);
+		while (node != null && i < keys.length) {
+			node = node.getChild(keys[i++]);
+		}
+		return node;
+	}
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		// bfs by level
@@ -173,6 +225,11 @@ public class IndexTree {
 		return sb.toString();
 	}
 	
+	public int size() {
+		return this.size;
+	}
+	
+	// Setters and Getters beyond this point
 	protected Hashtable<Character, TreeNode<WordTuple>> getChildren() {
 		return this.children;
 	}
