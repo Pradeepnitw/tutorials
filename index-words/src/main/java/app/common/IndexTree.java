@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 public class IndexTree implements Serializable {
 	/**
@@ -144,7 +145,7 @@ public class IndexTree implements Serializable {
 			return null;
 		WordTuple[] words = new WordTuple[num];
 		
-		PriorityQueue<WordTuple> heap = new PriorityQueue<WordTuple>(num, comparator);
+		TreeSet<WordTuple> heap = new TreeSet<WordTuple>(comparator);
 		
 		LinkedList<TreeNode<WordTuple>> queue = new LinkedList<TreeNode<WordTuple>>();
 		
@@ -154,32 +155,39 @@ public class IndexTree implements Serializable {
 			for (TreeNode<WordTuple> n : children.values()) {
 				queue.add(n);
 				for (WordTuple w : n.wordList) {
-					if (!heap.contains(w))
+					if (!heap.contains(w)) {
 						heap.add(w);
+						if (heap.size() > num)
+							heap.pollLast();
+					}
 				}
 			}
 		} else {
 			TreeNode<WordTuple> lastNode = getNodeByCharacterArray(queryString.toCharArray());
 			queue.add(lastNode);
 			for (WordTuple w : lastNode.wordList) {
-				if (!heap.contains(w))
+				if (!heap.contains(w)) {
 					heap.add(w);
+					if (heap.size() > num)
+						heap.pollLast();
+				}
 			}
 		}
 		
 		while (!queue.isEmpty()) {
 			queue.addAll(queue.peek().children.values());
 			for (WordTuple w : queue.peek().wordList) {
-				if (!heap.contains(w))
+				if (!heap.contains(w)) {
 					heap.add(w);
+					if (heap.size() > num)
+						heap.pollLast();
+				}
 			}
 			queue.pop();
 		}
 		
-		System.out.println("Heap Size:" + heap.size());
-		
 		for (int i = 0; i < num; i++) {
-			words[i] = heap.poll();
+			words[i] = heap.pollFirst();
 		}
 		
 		return words;

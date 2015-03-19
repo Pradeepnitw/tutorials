@@ -63,7 +63,7 @@ public class QueryTopTenWords {
 	}
 	
 	public WordTuple[] query(String query) {
-		return tree.queryByComparator(query, 10, new WordTupleByScoreComparator());
+		return tree.queryByComparator(query, 5, new WordTupleByScoreComparator());
 	}
 	
 	public static void main(String[] args) {
