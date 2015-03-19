@@ -15,6 +15,7 @@ import app.common.IndexTreeUtil;
 public class ConstructFile {
 	private String DEFAULT_FILE_NAME;
 	private String DEFAULT_OBJECT_NAME;
+	private static String INSTRUCTION = "\n    -d to specify directory\n    -n to specify filename\n    -p to print tree\n    -o to specify serilized object name";
 
 	public ConstructFile() {
 		Properties prop = new Properties();
@@ -45,26 +46,57 @@ public class ConstructFile {
 	public static void main(String[] args) {
 		ConstructFile cf = new ConstructFile();
 
+		boolean printTree = false;
+		String path = null;
+		String fileName = null;
+		String objectName = null;
+		
 		if (args.length == 0) {
 			System.out.println("Loading Indexed Tree Program from" +
 					"\n    Default directory: " + System.getProperty("user.dir") + 
 					"\n    Default file: " + cf.getDefaultFileName() +
-					"\n    -d to specify directory" +
-					"\n    -n to specify filename" +
-					"\n    -p to print tree" +
+					INSTRUCTION +
 					"\n--------------------\nSupported Text File Format: \n    word, #\ne.g.: \n    tedtulip, 5\n    ted_tulip, 2" +
 					"\n--------------------"
 					);
 		} else {
-			// TODO implemente this
+			for (int i = 0; i < args.length; i++) {
+				if (args[i].equalsIgnoreCase("-p")) {
+					printTree = true;
+				} else if (args[i].equalsIgnoreCase("-d") && i != args.length) {
+					path = args[++i];
+				} else if (args[i].equalsIgnoreCase("-n") && i != args.length) {
+					fileName = args[++i];
+				} else if (args[i].equalsIgnoreCase("-o") && i != args.length) {
+					objectName = args[++i];
+				} else 
+					System.out.println("Illegal argument:" + args[i] + "\n" + INSTRUCTION);
+			}
 		}
 
+		if (path == null) {
+			path = System.getProperty("user.dir");
+		}
+		
+		if (fileName == null) {
+			fileName = cf.DEFAULT_FILE_NAME;
+		}
+		
+		if (objectName == null) {
+			objectName = cf.DEFAULT_OBJECT_NAME;
+		}
+		
+		System.out.println("  path = " + path);
+		System.out.println("  fileName = " + fileName);
+		System.out.println("  objectName = " + objectName);
+		
 		IndexTree tree = new IndexTree();
-		cf.constructTreeFromTxtFile(null, tree);
+		// This may cause problem on PC
+		cf.constructTreeFromTxtFile(path + "/" + fileName, tree);
 
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(cf.DEFAULT_OBJECT_NAME);
+			fos = new FileOutputStream(objectName);
 			IndexTreeUtil.serializeTreeToFile(fos, tree);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -77,6 +109,11 @@ public class ConstructFile {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+		}
+		
+		if (printTree) {
+			System.out.println("Printing Tree by Level");
+			System.out.println(tree.toString());
 		}
 	}
 
@@ -107,7 +144,7 @@ public class ConstructFile {
 				}
 		}
 
-		System.out.println("Constrcuted IndexTree with size: " + tree.size() + 
+		System.out.println("Construction success\n    IndexTree with size: " + tree.size() + 
 				"\n    Text file total number of non-empty lines: " + numOfLines +
 				"\n    Bad Record: " + (numOfLines - tree.size()) +
 				"\n--------------------");

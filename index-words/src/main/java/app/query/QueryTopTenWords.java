@@ -14,7 +14,7 @@ public class QueryTopTenWords {
 	private String DEFAULT_OBJECT_NAME;
 	private IndexTree tree = null;
 	
-	public QueryTopTenWords(String fileName) {
+	public QueryTopTenWords() {
 		Properties prop = new Properties();
 		InputStream input = null;
 		
@@ -37,17 +37,14 @@ public class QueryTopTenWords {
 				}
 			}
 		}
-		
-		loadTreeFromFile(fileName);
+		loadTreeFromFile();
 	}
 	
-	private void loadTreeFromFile(String fileName) {
-		if (fileName == null)
-			fileName = DEFAULT_OBJECT_NAME;
+	public void loadTreeFromFile() {
 		FileInputStream fis = null;
 
 		try {
-			fis = new FileInputStream(fileName);
+			fis = new FileInputStream(DEFAULT_OBJECT_NAME);
 			tree = IndexTreeUtil.deserializeTreeFromFile(fis);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -63,18 +60,26 @@ public class QueryTopTenWords {
 	}
 	
 	public WordTuple[] query(String query) {
-		return tree.queryByComparator(query, 5, new WordTupleByScoreComparator());
+		return tree.queryByComparator(query, 10, new WordTupleByScoreComparator());
 	}
 	
 	public static void main(String[] args) {
-		// Load the default testing file
-		QueryTopTenWords qttw = new QueryTopTenWords(null);
-//		System.out.println("Printing Entire Tree");
-//		System.out.println(qttw.tree);
-//		System.out.println("----------------------");
+		QueryTopTenWords qttw = new QueryTopTenWords();
+		String queryString = null;
 		
-		
-		WordTuple[] array = qttw.query(null);
+		if (args.length == 0) {
+			System.out.println("Loading Indexed Tree Program from" +
+					"\n    Default directory: " + System.getProperty("user.dir") + 
+					"\n    Default file for serialized IndexTree object: " + qttw.DEFAULT_OBJECT_NAME +
+					"\n    Type searching String to start searching, default will list all the words" +
+					"\n--------------------"
+					);
+		} else {
+			queryString = args[0];
+			System.out.println("Query String = " + queryString + "\n---------");
+		}
+
+		WordTuple[] array = qttw.query(queryString);
 		for (WordTuple w : array) {
 			if (w != null) {
 				System.out.println(w.toString());
@@ -82,9 +87,4 @@ public class QueryTopTenWords {
 		}
 
 	}
-	
-//	// setters and getters
-//	public String getDefaultObjectName() {
-//		return DEFAULT_OBJECT_NAME;
-//	}
 }
