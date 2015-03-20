@@ -11,32 +11,10 @@ import app.common.WordTuple;
 import app.common.WordTupleByScoreComparator;
 
 public class QueryTopTenWords {
-	private String DEFAULT_OBJECT_NAME;
+	private String DEFAULT_OBJECT_NAME = "IndexTreeSerialized";
 	private IndexTree tree = null;
 	
 	public QueryTopTenWords() {
-		Properties prop = new Properties();
-		InputStream input = null;
-		
-		try {
-			input = new FileInputStream("config.properties");
-			// load a properties file
-			prop.load(input);
-
-			// get the property value and print it out
-			DEFAULT_OBJECT_NAME = prop.getProperty("DEFAULT_OBJECT_NAME");
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 		loadTreeFromFile();
 	}
 	

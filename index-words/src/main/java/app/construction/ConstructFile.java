@@ -1,46 +1,20 @@
 package app.construction;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 import app.common.IndexTree;
 import app.common.IndexTreeUtil;
 
 public class ConstructFile {
-	private String DEFAULT_FILE_NAME;
-	private String DEFAULT_OBJECT_NAME;
+	private String DEFAULT_FILE_NAME = "testinput.txt";
+	private String DEFAULT_OBJECT_NAME = "IndexTreeSerialized";
 	private static String INSTRUCTION = "\n    -d to specify directory\n    -n to specify filename\n    -p to print tree\n    -o to specify serilized object name";
 
 	public ConstructFile() {
-		Properties prop = new Properties();
-		InputStream input = null;
-
-		try {
-			input = new FileInputStream("config.properties");
-			// load a properties file
-			prop.load(input);
-
-			// get the property value and print it out
-			DEFAULT_FILE_NAME = prop.getProperty("DEFAULT_FILE_NAME");
-			DEFAULT_OBJECT_NAME = prop.getProperty("DEFAULT_OBJECT_NAME");
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 
 	public static void main(String[] args) {
