@@ -164,6 +164,8 @@ public class IndexTree implements Serializable {
 			}
 		} else {
 			TreeNode<WordTuple> lastNode = getNodeByCharacterArray(queryString.toCharArray());
+			if (lastNode == null) 
+				return words;
 			queue.add(lastNode);
 			for (WordTuple w : lastNode.wordList) {
 				if (!heap.contains(w)) {

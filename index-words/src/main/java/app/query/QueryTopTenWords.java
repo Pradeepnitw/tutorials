@@ -64,25 +64,27 @@ public class QueryTopTenWords {
 	}
 	
 	public static void main(String[] args) {
-		QueryTopTenWords qttw = new QueryTopTenWords();
+		
 		String queryString = null;
+		System.out.println("Loading Indexed Tree Program from" +
+				"\n    Default directory: " + System.getProperty("user.dir"));
+		QueryTopTenWords qttw = new QueryTopTenWords();
+		System.out.println("    Default file for serialized IndexTree object: " + qttw.DEFAULT_OBJECT_NAME);
 		
 		if (args.length == 0) {
-			System.out.println("Loading Indexed Tree Program from" +
-					"\n    Default directory: " + System.getProperty("user.dir") + 
-					"\n    Default file for serialized IndexTree object: " + qttw.DEFAULT_OBJECT_NAME +
-					"\n    Type searching String to start searching, default will list all the words" +
+			System.out.println("\n    Type searching String to start searching, default will list all the words" +
 					"\n--------------------"
 					);
 		} else {
 			queryString = args[0];
-			System.out.println("Query String = " + queryString + "\n---------");
+			System.out.println("    Searching with query String = " + queryString + "\n--------------------");
 		}
 
 		WordTuple[] array = qttw.query(queryString);
+		System.out.println("Result:");
 		for (WordTuple w : array) {
 			if (w != null) {
-				System.out.println(w.toString());
+				System.out.println("    " + w.toString());
 			}
 		}
 
