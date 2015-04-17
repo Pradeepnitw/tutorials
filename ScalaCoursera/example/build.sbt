@@ -46,7 +46,7 @@ libraryDependencies <++= (currentProject) { c =>
 
 // See documentation in ProgFunBuild.scala
 projectDetailsMap := {
-val currentCourseId = "progfun-005"
+val currentCourseId = "progfun-004"
 Map(
   "example" ->  ProjectDetails(
                   packageName = "example",
