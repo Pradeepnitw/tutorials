@@ -7,6 +7,7 @@ val strange = new Rational(1, 0)
 strange.add(strange)
 
 class Rational(x: Int, y: Int) {
+  require(y > 0, "denominator must be positive")
   /**
    * Greatest common divider
    * @param a
