@@ -67,7 +67,6 @@ public class Movie {
         
         // Local class for TreeSet to compare Movies by rating
     	class MovieComparatorByRating implements Comparator<Movie> {
-    		@Override
     		public int compare(Movie o1, Movie o2) {
     			return (o2.rating - o1.rating) > 0 ? 1:-1;
     		}
