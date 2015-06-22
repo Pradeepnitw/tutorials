@@ -1,3 +1,5 @@
+package leetcode.l1506;
+
 import java.util.*;
 
 public class SolveNQueens {
