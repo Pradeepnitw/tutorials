@@ -3,7 +3,7 @@
 """
 from random import random
 
-mute = True
+mute = False
 
 def swap(a, i, j):
     if i == j:
@@ -14,11 +14,9 @@ def swap(a, i, j):
 
 
 def knuth_shuffle(a):
-    idx = 1
-    while idx < len(a):
-        j = int(random() * (idx + 1))
-        swap(a, idx, j)
-        idx += 1
+    for i in range(len(a)):
+        ran = int(random()*(i+1))
+        swap(a, i, ran)
 
 
 def test_knuth_shuffle():
@@ -46,40 +44,37 @@ def quicksort(a):
 def _partition(a, lo, hi):
     if not a or lo >= hi:
         return
-    elif lo == hi - 1:
-        if a[lo] > a[hi]:
-            swap(a, lo, hi)
-    p = a[lo]  # Pivotal element
     i = lo + 1
     j = hi
     if not mute:
-        print "p={},lo={},hi={},a={}".format(p, lo, hi, a)
-    while i < j:
-        while i <= hi and a[i] <= p:
+        print "p={},lo={},hi={},a={}".format(a[lo], lo, hi, a)
+    while i <= j:
+        while i <= hi and a[i] <= a[lo]:
             i += 1
-        while a[j] > p and j - 1 > lo:
+        while a[j] > a[lo]:
             j -= 1
-        if i < j:
-            if not mute:
-                print "i={},j={} swapping".format(i, j)
-                print a
-            swap(a, i, j)
-            if not mute:
-                print a
-    if i > j:
-        swap(a, lo, j)
+        if j == lo:
+            break
+        if i > j:
+            i = lo
+        if not mute:
+            print "i={},j={} swapping".format(i, j)
+            print a
+        swap(a, i, j)
+        if not mute:
+            print a
     if not mute:
-        print "p={},i={},j={},a={}".format(p, i, j, a)
+        print "p={},i={},j={},a={}".format(a[lo], i, j, a)
     _partition(a, lo, j-1)
-    _partition(a, i, hi)
+    _partition(a, j+1, hi)
 
 
 def run_tests():
     test_knuth_shuffle()
-    l = range(50)
-    for i in range(100):
+    l = range(5)
+    for i in range(10):
         quicksort(l)
-        if not l == range(50):
+        if not l == range(5):
             print "False assertion, l={}".format(l)
             assert False
     print "All tests passed"
