@@ -1,0 +1,29 @@
+06/06/2018
+https://golangbot.com/golang-tutorial-part-1-introduction-and-installation/
+- concurrency Goroutine and channels
+- compiled to native lib
+- https://golang.org/ref/spec
+- https://golang.org/dl/
+-- download macOS
+
+Command used
+
+go build
+go clean
+go install
+// Add to bin
+
+https://golangbot.com/hello-world/
+
+go run $HOME/go/src/hello/helloworld.go
+
+go install hello
+
+
+https://golangbot.com/variables/
+
+Syntax:
+var name type
+
+https://golangbot.com/types/
+TODO

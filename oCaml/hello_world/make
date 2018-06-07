@@ -1,0 +1,2 @@
+ocamlbuild my_prog.native
+./my_prog.native

@@ -1,0 +1,2 @@
+rm my_prog.native
+rm -rf _build
