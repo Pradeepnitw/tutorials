@@ -59,8 +59,92 @@ val average : float -> float -> float = <fun>
 # (* ocaml is strongly statically typed language
 * Uses type inference
 * Ocaml doesn't do implicit casting like C. If you want a float you would need to write 2.0
-* The last expression of a function is the return value automatically *)
+* The last expression of a function is the return value automatically *);;
+#
 
+  (* Basic types *);;
+# (*
+* OCaml uses one of the bits in an int internally to do garbage collection.
+* Provides a nativeint type that's 32 bits.
+* OCaml char type doesn't support Unicode or UTF-8
+* unit is similar to void in C
+* *);;
+06/07/2018
+
+#
+
+  (* Implicit vs. explicit casts *);;
+# 1 + 2.5;;
+Error: This expression has type float but an expression was expected of type
+         int
+# 1 +. 2.5;;
+Error: This expression has type int but an expression was expected of type
+         float
+# 1.0 +. 2.5;;
+- : float = 3.5
+# (* Explicit cast *)
+  (float_of_int 1) +. 2.5
   ;;
+- : float = 3.5
+# int_of_float 1.0;;
+- : int = 1
+# char_of_int 1;;
+- : char = '\001'
+# char_of_int 123;;
+- : char = '{'
+# int_of_char 'a';;
+- : int = 97
+# string_of_int 234;;
+- : string = "234"
+# (* float_of_int have a shorter alias float *)
+  float 1 +. 2.5;;
+- : float = 3.5
+# (* It's valid for a type and a function to have the same name *);;
+#
 
+  (* Ordinary functions and recrusive functions *);;
+# (* let rec means this function is going to be recursive *);;
+# let rec range a b =
+    if a > b then []
+    else a :: range (a+1) b;;
+val range : int -> int -> int list = <fun>
+# range 1 2;;
+- : int list = [1; 2]
+# range 1 5;;
+- : int list = [1; 2; 3; 4; 5]
+
+# let positive_sum a b =
+    let a = max a 0
+    and b = max b 0 in
+    a + b;;
+val positive_sum : int -> int -> int = <fun>
+# let positive_sum a b =
+    let a_pos = max a 0
+    and b_pos = max b 0 in
+    a_pos + b_pos;;
+val positive_sum : int -> int -> int = <fun>
+
+https://ocaml.org/learn/tutorials/structure_of_ocaml_programs.html
+The Structure of OCaml Programs
+#
+
+  (* Local "variables" aka. really local expressions *);;
+# let average a b =
+    let sum = a +. b in
+    sum /. 2.0;;
+val average : float -> float -> float = <fun>
+# (* let name = expr in *)
+  (* Is used to define a named local expression. *)
+  ;;
+# (* name can be used later in the function till a ;; *);;
+# (* sum here is not actually a variable, its an alias to another expression *);;
+#
+  let f a b =
+    (a +. b) +. (a +. b) ** 2.;;
+val f : float -> float -> float = <fun>
+# let f a b =
+    let x = a +. b in
+    x +. x ** 2.;;
+val f : float -> float -> float = <fun>
+# (* Second version might be faster *);;
 
