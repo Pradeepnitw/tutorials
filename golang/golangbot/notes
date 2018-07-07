@@ -24,6 +24,29 @@ https://golangbot.com/variables/
 
 Syntax:
 var name type
+see copied file vars.go
 
 https://golangbot.com/types/
-TODO
+
+Basic types in go
+- bool
+- Numeric Types
+-- int8, int16, int32, int64, int
+-- uint8, uint16, uint32, uint64, uint
+-- float32, float64
+-- complex64, complex128
+-- byte
+-- rune ?
+- string
+
+https://golangbot.com/constants/
+
+const a = 55
+
+const b = math.Sqrt(4)//not allowed
+
+b is a constant and it's value will be evaluated at compile time. math.Sqrt(4) will be evaluated only during runtime.
+
+A string const is untyped.
+
+
