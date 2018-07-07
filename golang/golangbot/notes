@@ -45,8 +45,10 @@ const a = 55
 
 const b = math.Sqrt(4)//not allowed
 
+A constant's value must be known at compile time.
+    
 b is a constant and it's value will be evaluated at compile time. math.Sqrt(4) will be evaluated only during runtime.
 
-A string const is untyped.
+A string const is *untyped*.
 
 
