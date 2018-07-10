@@ -1,1 +1,1 @@
-cp /Users/fiona/go/src/hello/* src/
+cp -r /Users/fiona/go/src/hello/* src/

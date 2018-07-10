@@ -51,4 +51,23 @@ b is a constant and it's value will be evaluated at compile time. math.Sqrt(4) w
 
 A string const is *untyped*.
 
+https://golangbot.com/functions/
+
+func functionname(paramtername type) returntype { // }
+
+Named return values: you can predefine variable names at the function signature.
+
+https://golangbot.com/packages/
+
+go install hello/geometry
+
+now run this package's main function with command
+/Users/fiona/go/bin/geometry
+
+func init() {}
+- for package
+- called after package level variables are created; 
+- can have multiple in a package
+- if package imports other package, other inits are called first dah
+- a package will only be init once no matter how many other packages imports it
 
