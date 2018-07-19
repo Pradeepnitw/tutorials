@@ -71,3 +71,23 @@ func init() {}
 - if package imports other package, other inits are called first dah
 - a package will only be init once no matter how many other packages imports it
 
+
+https://golangbot.com/loops/
+
+Go doesn't have while or do while loops.
+
+https://golangbot.com/switch/
+
+https://golangbot.com/arrays-and-slices/
+
+Mixing values of different types is NOT allowed in Go.
+
+append function: https://play.golang.org/p/v942N777XHO
+
+https://golangbot.com/variadic-functions/
+
+Variadic function: func f(...T)  can accept any number of T.
+
+https://golangbot.com/maps/
+
+
