@@ -90,4 +90,25 @@ Variadic function: func f(...T)  can accept any number of T.
 
 https://golangbot.com/maps/
 
+https://golangbot.com/strings/
+UTF-8 encoded
+Using rune to print unicode: https://play.golang.org/p/t4z-f8I-ih
+But it's easier to use for range loop on a string.
+for index, rune := range s {}
+
+Length of string:
+- unicode, use unicode.utf8.RuneCountInString(s)
+- ascii just use len(s)
+
+Mutate string: Convert to []rune then string(s) back 
+https://play.golang.org/p/GL1cm17IP1
+
+https://golangbot.com/pointers/
+
+a[x] is shorthand for (*a)[x]. (*arr)[0] same as arr[0].
+
+https://golangbot.com/structs/
+
+anonymous fields doesn't have a name. By default it's name is the type.
+promoted fields: https://play.golang.org/p/OgeHCJYoEy
 
